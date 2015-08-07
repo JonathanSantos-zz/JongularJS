@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html jo-app="myApp">
+<head>
+	<title>Test Jongular</title>
+</head>
+<body>
+	<div jo-controller="testController">
+		Usuario: <span jo-model="user"></span><br />
+		Senha: <span jo-model="senha"></span>
+	</div>
+	<script type="text/javascript" src="jongularJS.js"></script>
+	<script type="text/javascript">
+
+		var app = jongular.module('myApp');
+		var test;
+
+		app.controller('testController', function($scope){
+			test = $scope;
+			$scope.user = 'Jonathan';
+			$scope.senha = 'teste';
+
+			setTimeout(function(){$scope.user = 'Rafael';}, 3000);
+			setTimeout(function(){$scope.user = 'Marcão';}, 6000);
+
+		});
+
+	</script>
+</body>
+</html>
