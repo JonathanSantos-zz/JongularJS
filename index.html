@@ -6,22 +6,52 @@
 <body>
 	<div jo-controller="testController">
 		Usuario: <span jo-model="user"></span><br />
-		Senha: <span jo-model="senha"></span>
+		Senha: <span jo-model="senha"></span><br />
+		Usuario: <input type="text" jo-model="joao"/>
+		<span jo-click="mostrar">nome</span>
 	</div>
-	<script type="text/javascript" src="jongularJS.js"></script>
+
+	<div jo-controller="novoController">
+		<span jo-model="clique"></span><br />
+		<input type="button" jo-click="add" value="Adicionar" />
+		<h1 jo-init="jo = 'Jonathan Reis dos Santos'" jo-model="jo"></h1>
+	</div>
+
+	<div jo-controller="semController">
+		<h1 jo-init="jo = 'Jonathan Reis dos Santos'" jo-model="jo"></h1>
+		<input type="text" jo-model="jo"/>
+	</div>
+
+	<script type="text/javascript" src="jongularJS.2.0.js"></script>
 	<script type="text/javascript">
 
 		var app = jongular.module('myApp');
-		var test;
 
-		app.controller('testController', function($scope){
-			test = $scope;
+		app.controller('testController', function($scope, $rootScope){
 			$scope.user = 'Jonathan';
 			$scope.senha = 'teste';
+
+			$scope.mostrar = function(){
+				alert($scope.joao);
+			};
 
 			setTimeout(function(){$scope.user = 'Rafael';}, 3000);
 			setTimeout(function(){$scope.user = 'Marcão';}, 6000);
 
+		});
+
+		app.controller('novoController', function($scope, $rootScope){
+			
+			$scope.clique = 0;
+
+			$scope.add = function(){
+				$scope.clique++;
+			};
+
+		});
+
+		app.controller('semController', function($http){
+			console.log($http);
 		});
 
 	</script>
